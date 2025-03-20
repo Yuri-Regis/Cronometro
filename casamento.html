@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronômetro do Casamento 💍</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #121212; color: #fff; height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; overflow: hidden;
+        }
+        h1, h2 { font-weight: 600; margin-bottom: 20px; }
+        .buttons { margin-top: 20px; }
+        button {
+            font-size: 20px; padding: 12px 25px; margin: 10px; border: none;
+            border-radius: 30px; cursor: pointer; transition: 0.3s ease-in-out; font-weight: 600;
+        }
+        .yes { background: #ff1493; color: white; box-shadow: 0 4px 10px rgba(255, 20, 147, 0.5); }
+        .yes:hover { transform: scale(1.1); box-shadow: 0 6px 15px rgba(255, 20, 147, 0.7); }
+        .no { background: #ff0000; color: white; position: absolute; box-shadow: 0 4px 10px rgba(255, 69, 0, 0.5); }
+        .no:hover { transform: scale(1.1); }
+        #surpresa, #final { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); color: white; padding-top: 100px; }
+        #anel, #gato { width: 250px; animation: brilhar 1s infinite alternate; }
+        @keyframes brilhar { from { transform: scale(1); } to { transform: scale(1.1); } }
+        audio { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="principal">
+        <h2>⏳ Um cronômetro para o dia mais importante 💖</h2>
+        <h1>Você está pronta para saber a data do nosso casamento? 💍</h1>
+        <div class="buttons">
+            <button class="yes" id="botaoSim" onclick="mostrarPedido()">Sim, quero saber! 💖</button>
+            <button class="no" onclick="mostrarMensagem()">Não, estou nervosa 😅</button>
+        </div>
+    </div>
+
+    <div id="surpresa">
+        <h1>Você me pegou! 💕 Aceita casar comigo? 💍</h1>
+        <img id="anel" src="https://i.imgur.com/VG1IMcH.png" alt="Pedido de casamento">
+        <br>
+        <button class="yes" onclick="mostrarFinal()">SIM! MIL VEZES SIM! 🥰</button>
+    </div>
+
+    <div id="final">
+        <h1>Estamos quase lá, mas por enquanto... Te deixo esse gatinho! 😽</h1>
+        <img id="gato" src="https://i.imgur.com/TwAgi38.png" alt="Gato fofo">
+        <br/>
+        <h1>Feliz 1º ano de namoro, meu amor! Te amo para sempre 💖✨</h1>
+    </div>
+
+    <script>
+        let tentativas = 0;
+
+        document.getElementById("botaoSim").addEventListener("mouseover", function() {
+            if (tentativas < 3) {
+                let botao = document.getElementById("botaoSim");
+                let larguraJanela = window.innerWidth - botao.offsetWidth - 10; 
+                let alturaJanela = window.innerHeight - botao.offsetHeight - 10;
+
+                botao.style.position = "absolute";
+                botao.style.left = Math.random() * larguraJanela + "px";
+                botao.style.top = Math.random() * alturaJanela + "px";
+                tentativas++;
+            }
+        });
+
+        function mostrarPedido() {
+            document.getElementById('principal').style.display = 'none'; 
+            document.getElementById('surpresa').style.display = 'block';
+        }
+
+        function mostrarFinal() {
+            document.getElementById('surpresa').style.display = 'none';  
+            document.getElementById('final').style.display = 'block';  
+        }
+
+        function mostrarMensagem() {
+            alert("Você vai querer saber sim, admita! 😜💕");
+        }
+    </script>
+
+</body>
+</html>
